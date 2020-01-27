@@ -1,0 +1,25 @@
+server:
+  port: 80
+spring:
+  application:
+    name: ericapp
+  mandatory-file-encoding: UTF-8
+  http:
+    encoding:
+      enabled: true
+      charset: utf-8
+  profiles:
+    active: dev
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  kafka:
+    producer:
+      bootstrap-servers: 47.101.134.66:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: 47.101.134.66:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

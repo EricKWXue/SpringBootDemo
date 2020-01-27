@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <span>状态：</span>
+        <textarea style="width: 446px;" readonly="readonly" id="status" value="closed"></textarea>
+        <input type="button" value="connect" name="connectBtn" id="connectBtn"/>
+    </div>
+    <div>
+        <span>message：</span>
+        <textarea style="width: 411px;" id="message"></textarea>
+        <input type="button" value="submit" name="submitBtn" id="submitBtn"/>
+    </div>
+
+    <div>
+        <textarea style="width: 500px;height: 500px;" id="history"></textarea>
+    </div>
+</body>
+<script type="text/javascript" src="js/sockjs.js"></script>
+<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+
+<script type="text/javascript">
+    //websocket对象
+    var ws = null;
+
+    function logMsg(message){
+        //var oldMessage = $('#history').val();
+        $('#history').append("\n" + message);
+    }
+
+    function echoMsg(){
+        if(ws == null){
+          return;
+        }
+        var message = $.trim($('#message').val());
+        if(message.length != 0){
+            ws.send(message);
+        }
+    }
+
+    //入口
+    $(function () {
+
+        $('#connectBtn').on('click', function(){
+            if(ws != null){
+                return false;
+            }
+
+            ws = new SockJS("/echo");
+
+            ws.onopen = function () {
+                console.log("opening");
+                $('#status').val('opening');
+            };
+
+            ws.onmessage = function (ev) {
+                console.log(ev.data);
+                logMsg(ev.data);
+            };
+
+            ws.onclose = function () {
+                console.log("closed");
+                $('#status').val('closed');
+            };
+
+        });
+
+        $('#submitBtn').on('click', function(){
+            echoMsg();
+        })
+
+
+    })
+
+</script>
+</html>
