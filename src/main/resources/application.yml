@@ -10,10 +10,19 @@ spring:
       charset: utf-8
   profiles:
     active: dev
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
+  thymeleaf:
+    mode: HTML5
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+    cache: false
+    #默认路径，可以不配
+    prefix: classpath:/templates/
+    suffix: .html
+   #mvc:
+     #view:
+      #prefix: /WEB-INF/jsp/
+      #suffix: .jsp
   kafka:
     producer:
       bootstrap-servers: 47.101.134.66:9092
