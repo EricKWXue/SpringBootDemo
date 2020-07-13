@@ -32,3 +32,8 @@ spring:
       bootstrap-servers: 47.101.134.66:9092
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    #kafka自定义开关
+    customer:
+      turn: on
+logging:
+  config: classpath:logback-spring.xml

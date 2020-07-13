@@ -1,7 +1,7 @@
 server:
-  port: 9090
-myconfig:
-  myperson:
-    myid: 10
-    myname: eric
-    mygender: handsome-man
+  port: 9091
+#kafka自定义开关
+spring:
+  kafka:
+    customer:
+      turn: off

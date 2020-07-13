@@ -10,11 +10,6 @@
 
     <!-- 开发环境 -->
     <springProfile name="dev">
-        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-            <encoder>
-                <pattern>${PATTERN}</pattern>
-            </encoder>
-        </appender>
         <logger name="com.eric.springdemo" level="DEBUG"/>
         <root level="info">
             <appender-ref ref="CONSOLE"/>

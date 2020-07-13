@@ -5,10 +5,13 @@ import com.eric.springdemo.handler.EchoWebSocketHandler;
 import com.eric.springdemo.util.JsonUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
+@ConditionalOnProperty(name="spring.kafka.customer.turn", havingValue = "on")
 public class KafkaConsumer {
 
     @Autowired
